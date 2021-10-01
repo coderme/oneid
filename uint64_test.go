@@ -222,3 +222,4 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDs(t *testing.T) {
 // using different serverIDs upto the maximum 1024
 func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testing.T) {
 
+	ids := make(chan uint64, 10_240)
