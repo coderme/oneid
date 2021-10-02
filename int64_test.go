@@ -226,3 +226,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDs(t *testing.T) {
 	var ids []int64
 
 	for c := int64(1); c < 1025; c++ {
+		id := Int64(1, 0, &DefaultInt64Config)
