@@ -225,3 +225,4 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testin
 	ids := make(chan uint64, 10_240)
 	wg := &sync.WaitGroup{}
 
+	wg.Add(10)
