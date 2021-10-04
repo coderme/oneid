@@ -229,3 +229,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDs(t *testing.T) {
 		id := Int64(1, 0, &DefaultInt64Config)
 
 		for _, v := range ids {
+			if v == id {
