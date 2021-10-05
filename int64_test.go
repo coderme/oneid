@@ -230,3 +230,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDs(t *testing.T) {
 
 		for _, v := range ids {
 			if v == id {
+				t.Error("Duplicate Id found with serverID:", c, "id:", id)
