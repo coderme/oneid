@@ -231,3 +231,4 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testin
 			defer wg.Done()
 
 			for c := uint64(0); c < 1024; c++ {
+				ids <- Uint64(1, 0, &DefaultUint64Config)
