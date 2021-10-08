@@ -233,3 +233,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDs(t *testing.T) {
 				t.Error("Duplicate Id found with serverID:", c, "id:", id)
 			}
 		}
+		ids = append(ids, id)
