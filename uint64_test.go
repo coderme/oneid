@@ -233,3 +233,4 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testin
 			for c := uint64(0); c < 1024; c++ {
 				ids <- Uint64(1, 0, &DefaultUint64Config)
 			}
+		}()
