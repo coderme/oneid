@@ -237,3 +237,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDs(t *testing.T) {
 	}
 }
 
+// TestInt64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads tests Int64() concurrently for any duplicate ids generated
