@@ -242,3 +242,4 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testin
 	seen := make(map[uint64]struct{})
 
 	for i := range ids {
+		if _, ok := seen[i]; !ok {
