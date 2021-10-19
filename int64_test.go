@@ -246,3 +246,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testing
 
 	wg.Add(10)
 	for p := 0; p < 10; p++ {
+		go func() {
