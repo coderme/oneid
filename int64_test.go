@@ -249,3 +249,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testing
 		go func() {
 			defer wg.Done()
 
+			for c := 0; c < 1024; c++ {
