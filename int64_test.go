@@ -253,3 +253,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testing
 				ids <- Int64(1, 0, &DefaultInt64Config)
 			}
 		}()
+	}
