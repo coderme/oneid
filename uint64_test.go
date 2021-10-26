@@ -253,3 +253,4 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testin
 // TestEnvUint64 calls EnvUint64 with custom env variables
 func TestEnvUint64(t *testing.T) {
 	cleanEnvVars()
+
