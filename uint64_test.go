@@ -254,3 +254,4 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testin
 func TestEnvUint64(t *testing.T) {
 	cleanEnvVars()
 
+	data := []EnvTestData{
