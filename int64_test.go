@@ -258,3 +258,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testing
 	wg.Wait()
 
 	close(ids)
+	seen := make(map[int64]struct{})
