@@ -257,3 +257,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testing
 
 	wg.Wait()
 
+	close(ids)
