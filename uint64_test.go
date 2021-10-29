@@ -256,3 +256,4 @@ func TestEnvUint64(t *testing.T) {
 
 	data := []EnvTestData{
 		{
+			ServerID:  "",
