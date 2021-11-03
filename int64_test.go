@@ -265,3 +265,4 @@ func TestInt64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testing
 			seen[i] = struct{}{}
 		} else {
 			t.Error("Duplicate Id found:", i)
+		}
