@@ -274,3 +274,4 @@ func TestEnvInt64(t *testing.T) {
 	cleanEnvVars()
 
 	data := []EnvTestData{
+		{
