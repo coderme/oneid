@@ -292,3 +292,4 @@ func TestEnvUint64(t *testing.T) {
 		},
 	}
 
+	for _, v := range data {
