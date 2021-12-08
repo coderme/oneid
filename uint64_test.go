@@ -299,3 +299,4 @@ func TestEnvUint64(t *testing.T) {
 		}
 
 		err = os.Setenv(processIDKey, v.ProcessID)
+		if err != nil {
