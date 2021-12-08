@@ -298,3 +298,4 @@ func TestEnvUint64(t *testing.T) {
 			log.Fatalln("failed to set env", serverIDKey, "to", v.ServerID)
 		}
 
+		err = os.Setenv(processIDKey, v.ProcessID)
