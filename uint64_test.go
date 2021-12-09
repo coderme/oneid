@@ -301,3 +301,4 @@ func TestEnvUint64(t *testing.T) {
 		err = os.Setenv(processIDKey, v.ProcessID)
 		if err != nil {
 			log.Fatalln("failed to set env", processIDKey, "to", v.ProcessID)
+		}
