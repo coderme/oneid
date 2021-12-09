@@ -303,3 +303,4 @@ func TestEnvInt64(t *testing.T) {
 			ServerID:  "100_000",
 			ProcessID: "100_000",
 			IsError:   true,
+		},
