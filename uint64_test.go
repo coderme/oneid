@@ -303,3 +303,4 @@ func TestEnvUint64(t *testing.T) {
 			log.Fatalln("failed to set env", processIDKey, "to", v.ProcessID)
 		}
 
+		id, err := EnvUint64(&DefaultUint64Config)
