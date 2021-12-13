@@ -305,3 +305,4 @@ func TestEnvUint64(t *testing.T) {
 
 		id, err := EnvUint64(&DefaultUint64Config)
 		if err == nil && v.IsError {
+			t.Error("expected error found none.",
