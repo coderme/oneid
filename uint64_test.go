@@ -307,3 +307,4 @@ func TestEnvUint64(t *testing.T) {
 		if err == nil && v.IsError {
 			t.Error("expected error found none.",
 				"ServerID:", v.ServerID,
+				"ProcessID:", v.ProcessID,
