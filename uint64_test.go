@@ -309,3 +309,4 @@ func TestEnvUint64(t *testing.T) {
 				"ServerID:", v.ServerID,
 				"ProcessID:", v.ProcessID,
 				"generated ID:", id,
+			)
