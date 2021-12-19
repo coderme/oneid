@@ -312,3 +312,4 @@ func TestEnvUint64(t *testing.T) {
 			)
 		}
 
+		if err != nil && !v.IsError {
