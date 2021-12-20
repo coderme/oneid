@@ -314,3 +314,4 @@ func TestEnvUint64(t *testing.T) {
 
 		if err != nil && !v.IsError {
 			t.Error("expected no error, found one, error:", err)
+		}
