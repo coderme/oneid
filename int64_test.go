@@ -318,3 +318,4 @@ func TestEnvInt64(t *testing.T) {
 
 	for _, v := range data {
 		err := os.Setenv(serverIDKey, v.ServerID)
+		if err != nil {
