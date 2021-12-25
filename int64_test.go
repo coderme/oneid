@@ -321,3 +321,4 @@ func TestEnvInt64(t *testing.T) {
 		if err != nil {
 			log.Fatalln("failed to set env", serverIDKey, "to", v.ServerID)
 		}
+
