@@ -320,3 +320,4 @@ func TestEnvUint64(t *testing.T) {
 
 }
 
+// BenchmarkUint64 benchmarks a Uint64(1)
