@@ -322,3 +322,4 @@ func TestEnvUint64(t *testing.T) {
 
 // BenchmarkUint64 benchmarks a Uint64(1)
 func BenchmarkUint64(b *testing.B) {
+	for c := 0; c < b.N; c++ {
