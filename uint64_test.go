@@ -325,3 +325,4 @@ func BenchmarkUint64(b *testing.B) {
 	for c := 0; c < b.N; c++ {
 		_ = Uint64(1, 0, &DefaultUint64Config)
 	}
+}
