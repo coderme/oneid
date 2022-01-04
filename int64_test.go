@@ -332,3 +332,4 @@ func TestEnvInt64(t *testing.T) {
 			t.Error("expected error found none.",
 				"ServerID:", v.ServerID,
 				"ProcessID:", v.ProcessID,
+				"generated ID:", id,
