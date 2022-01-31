@@ -17,7 +17,7 @@
 
 ## Installation
 * The usal way, get it:
-```go get github.com/coderme/oneid````
+```go get github.com/coderme/oneid```
 
 
 ## Usage
@@ -31,7 +31,7 @@ id := oneid.Uint64(1,1 &oneid.DefaultUint64Config)
 ```
 
 ## Advanced Usage 
-* Creating a custom config for support of upto 16,384 servers with 32 processes each.
+* You can Create a custom config in order to support upto 16,384 servers with 32 processes each.
 ```
 
 conf := oneid.NewUint64Config(14, 5, 20)
