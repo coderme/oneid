@@ -17,13 +17,13 @@
 
 ## Installation
 * The usal way, get it:
-```go get github.com/coderme/oneid```
+```go get github.com/coderme/oneid/v2```
 
 
 ## Usage
-* Generation of int64 Id on a simple server with single process is as simple as:
+* Generation of uint32 Id on a simple server with single process is as simple as:
 ```
-id := oneid.Int64(1,1 &oneid.DefaultInt64Config)
+id := oneid.Uint32(1,1 &oneid.DefaultUint32Config)
 ```
 * or better an uint64 if your database supports it
 ```

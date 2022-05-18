@@ -13,7 +13,7 @@ const (
 	defaultUint64ServerBits   uint64 = 10
 	defaultUint64SequenceBits uint64 = 24
 
-	// min values
+	// min values.
 	minUint64ProcessBits  uint64 = 1
 	minUint64ServerBits   uint64 = 1
 	minUint64SequenceBits uint64 = 24
@@ -22,7 +22,7 @@ const (
 )
 
 // Uint64Config is cocurrently-safe stateful configuration
-// for raceless uint64 id generatation
+// for raceless uint64 id generatation.
 type Uint64Config struct {
 	Epoch,
 	CustomEpoch,
@@ -48,7 +48,6 @@ type Uint64Config struct {
 //   processBits: 6, serverBits: 1, sequenceBits: 20
 //   This will support upto 64 processes.
 func NewUint64Config(serverBits, processBits, sequenceBits uint64) Uint64Config {
-
 	if processBits < minUint64ProcessBits {
 		processBits = minUint64ProcessBits
 	}
@@ -86,21 +85,17 @@ func NewUint64Config(serverBits, processBits, sequenceBits uint64) Uint64Config 
 		SequenceBits: sequenceBits,
 		Mutex:        &sync.Mutex{},
 	}
-
 }
 
-var (
-	// DefaultUint64Config sets:
-	// processBits to 5, which supports upto 32 processes per server
-	// serverBits: 10,  which supports upto 1024 servers
-	// sequenceBits: 24, which supports upto 16,777,216 ids per time instance
-	DefaultUint64Config = NewUint64Config(defaultUint64ProcessBits, defaultUint64ServerBits, defaultUint64SequenceBits)
-)
+// DefaultUint64Config sets:
+// processBits to 5, which supports upto 32 processes per server
+// serverBits: 10,  which supports upto 1024 servers
+// sequenceBits: 24, which supports upto 16,777,216 ids per time instance.
+var DefaultUint64Config = NewUint64Config(defaultUint64ProcessBits, defaultUint64ServerBits, defaultUint64SequenceBits)
 
 // Uint64 generates uint64 id using  using serverID, processID and config
-// if processID is zero, then the system pid will be used
+// if processID is zero, then the system pid will be used.
 func Uint64(serverID, processID uint64, c *Uint64Config) uint64 {
-
 	if processID == 0 {
 		processID = uint64(os.Getpid())
 	}
@@ -123,14 +118,12 @@ func Uint64(serverID, processID uint64, c *Uint64Config) uint64 {
 		(serverID&(2<<(c.ServerBits-1)))<<(c.ProcessBits+c.SequenceBits) |
 		(processID & (2 << (c.ProcessBits - 1)) << c.SequenceBits) |
 		c.Sequence
-
 }
 
 // EnvUnt64 generates an uint64 id from envirment variables
 // SERVER_ID: unique numeric value represents this server
-// PROCESS_ID: unique numeric value represents this process
+// PROCESS_ID: unique numeric value represents this process.
 func EnvUint64(c *Uint64Config) (uint64, error) {
-
 	// server ID`
 	serverIDText := os.Getenv(serverIDKey)
 
@@ -149,4 +142,3 @@ func EnvUint64(c *Uint64Config) (uint64, error) {
 
 	return Uint64(serverID, processID, c), nil
 }
-
