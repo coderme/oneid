@@ -7,8 +7,9 @@ import (
 	"testing"
 )
 
-// TestNewUint64ConfigMinValues tests NewUint64Config for using minimal values configuration
+// TestNewUint64ConfigMinValues tests NewUint64Config for using minimal values configuration.
 func TestNewUint64ConfigMinValues(t *testing.T) {
+	t.Parallel()
 
 	c := NewUint64Config(0, 0, 0)
 
@@ -23,32 +24,36 @@ func TestNewUint64ConfigMinValues(t *testing.T) {
 	if c.SequenceBits < minUint64SequenceBits {
 		t.Error("SequenceBits is not set to minimum value")
 	}
-
 }
 
-// TestNewUint64ConfigSequanceBitsIsMax tests NewUint64Config SequenceBits is set to the maximum value
+// TestNewUint64ConfigSequanceBitsIsMax tests NewUint64Config SequenceBits is set to the maximum value.
 func TestNewUint64ConfigSequanceBitsIsMax(t *testing.T) {
+	t.Parallel()
 
 	values := [3][4]uint64{
 		{0, 0, 0, totalUint64Bits - 2},
-		{defaultUint64ProcessBits, defaultUint64ServerBits, defaultUint64SequenceBits, totalUint64Bits - defaultUint64ProcessBits - defaultUint64ServerBits},
-		{minUint64ProcessBits, minUint64ServerBits, minUint64SequenceBits, totalUint64Bits - minUint64ProcessBits - minUint64ServerBits},
+		{
+			defaultUint64ProcessBits, defaultUint64ServerBits,
+			defaultUint64SequenceBits, totalUint64Bits - defaultUint64ProcessBits - defaultUint64ServerBits,
+		},
+		{
+			minUint64ProcessBits, minUint64ServerBits,
+			minUint64SequenceBits, totalUint64Bits - minUint64ProcessBits - minUint64ServerBits,
+		},
 	}
 
 	for _, v := range values {
-
 		c := NewUint64Config(v[0], v[1], v[2])
 
 		if c.SequenceBits != v[3] {
 			t.Error("SequenceBits is not maxed out for values", v[0], v[1], v[2], "Expected:", v[3])
-
 		}
 	}
-
 }
 
-// TestNewUint64ConfigTotalBitsLength tests NewUint64Config total bits length
+// TestNewUint64ConfigTotalBitsLength tests NewUint64Config total bits length.
 func estNewUint64ConfigTotalBitsLength(t *testing.T) {
+	t.Parallel()
 
 	values := [5][3]uint64{
 		{0, 0, 0},
@@ -59,19 +64,17 @@ func estNewUint64ConfigTotalBitsLength(t *testing.T) {
 	}
 
 	for _, v := range values {
-
 		c := NewUint64Config(v[0], v[1], v[2])
 
 		if c.ProcessBits+c.ServerBits+c.SequenceBits != totalUint64Bits {
 			t.Error("Total bits is not equal to", totalUint64Bits)
-
 		}
 	}
-
 }
 
-// TestNewCustomUint6ZeroId tests CustomUint64 for any zero id
+// TestNewCustomUint6ZeroId tests CustomUint64 for any zero id.
 func TestNewCustomUint64ZeroId(t *testing.T) {
+	t.Parallel()
 
 	// create config with default values
 	c := NewUint64Config(defaultUint64ProcessBits, defaultUint64ServerBits, defaultUint64SequenceBits)
@@ -81,11 +84,11 @@ func TestNewCustomUint64ZeroId(t *testing.T) {
 			t.Error("Zero Id found with serverID:", i)
 		}
 	}
-
 }
 
-// TestNewCustomUint64NonDuplicateId tests CustomUint64 for any duplicate id
+// TestNewCustomUint64NonDuplicateId tests CustomUint64 for any duplicate id.
 func TestNewCustomUint64DuplicateId(t *testing.T) {
+	t.Parallel()
 
 	// create config with default values
 	c := NewUint64Config(defaultUint64ProcessBits, defaultUint64ServerBits, defaultUint64SequenceBits)
@@ -105,8 +108,9 @@ func TestNewCustomUint64DuplicateId(t *testing.T) {
 	}
 }
 
-// TestNewCustomUint64ForDuplicateIdMultipleThreads tests CustomUint64 for any duplicate id
+// TestNewCustomUint64ForDuplicateIdMultipleThreads tests CustomUint64 for any duplicate id.
 func TestNewCustomUint64NonDuplicateIdMultipleThreads(t *testing.T) {
+	t.Parallel()
 
 	ids := make(chan uint64, 100_000)
 	wg := &sync.WaitGroup{}
@@ -120,7 +124,6 @@ func TestNewCustomUint64NonDuplicateIdMultipleThreads(t *testing.T) {
 			defer wg.Done()
 
 			for i := uint64(0); i < 10_000; i++ {
-
 				id := Uint64(i, 0, &c)
 
 				ids <- id
@@ -140,22 +143,23 @@ func TestNewCustomUint64NonDuplicateIdMultipleThreads(t *testing.T) {
 			t.Error("Duplicate Id found: ", i)
 		}
 	}
-
 }
 
-// TestUint64ZeroServerID calls Uint64() with server id = 0
+// TestUint64ZeroServerID calls Uint64() with server id = 0.
 // checks for returning a non zero id
 func TestUint64ZeroServerID(t *testing.T) {
+	t.Parallel()
 
 	if Uint64(1, 0, &DefaultUint64Config) == 0 {
 		t.Error("ID equals zero")
 	}
-
 }
 
 // TestUint64ForNonUniqueIdOnSameProcessAndServer tests Uint64() serially for any duplicate ids generated
-// using same serverID
+// using same serverID.
 func TestUint64ForNonUniqueIdsOnSameProcessAndServer(t *testing.T) {
+	t.Parallel()
+
 	var ids []uint64
 
 	for c := 0; c < 100_000; c++ {
@@ -171,8 +175,10 @@ func TestUint64ForNonUniqueIdsOnSameProcessAndServer(t *testing.T) {
 }
 
 // TestUint64ForNonUniqueIdOnSameProcessAndServerAcrossMultipleThreads tests Uint64() concurrently for
-// any duplicate id generated  using same serverID
+// any duplicate id generated  using same serverID.
 func TestUint64ForDuplicateIdOnSameProcessAndServerAcrossMultipleThreads(t *testing.T) {
+	t.Parallel()
+
 	ids := make(chan uint64, 100_000)
 	wg := &sync.WaitGroup{}
 
@@ -190,6 +196,7 @@ func TestUint64ForDuplicateIdOnSameProcessAndServerAcrossMultipleThreads(t *test
 	wg.Wait()
 
 	close(ids)
+
 	seen := make(map[uint64]struct{})
 
 	for i := range ids {
@@ -202,8 +209,10 @@ func TestUint64ForDuplicateIdOnSameProcessAndServerAcrossMultipleThreads(t *test
 }
 
 // TestUint64ForNonUniqueIdOnDifferentServerIDs tests Uint64() serially for any duplicate ids generated
-// using different serverIDs upto the maximum 1024
+// using different serverIDs upto the maximum 1024.
 func TestUint64ForNonUniqueIdOnDifferentServerIDs(t *testing.T) {
+	t.Parallel()
+
 	var ids []uint64
 
 	for c := uint64(1); c < 1025; c++ {
@@ -214,18 +223,22 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDs(t *testing.T) {
 				t.Error("Duplicate Id found with serverID:", c, "id:", id)
 			}
 		}
+
 		ids = append(ids, id)
 	}
 }
 
-// TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads tests Uint64() concurrently for any duplicate ids generated
-// using different serverIDs upto the maximum 1024
+// TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads tests Uint64()
+// concurrently for any duplicate ids generated
+// using different serverIDs upto the maximum 1024.
 func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testing.T) {
+	t.Parallel()
 
 	ids := make(chan uint64, 10_240)
 	wg := &sync.WaitGroup{}
 
 	wg.Add(10)
+
 	for p := 0; p < 10; p++ {
 		go func() {
 			defer wg.Done()
@@ -237,8 +250,8 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testin
 	}
 
 	wg.Wait()
-
 	close(ids)
+
 	seen := make(map[uint64]struct{})
 
 	for i := range ids {
@@ -250,8 +263,10 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testin
 	}
 }
 
-// TestEnvUint64 calls EnvUint64 with custom env variables
+// TestEnvUint64 calls EnvUint64 with custom env variables.
 func TestEnvUint64(t *testing.T) {
+	t.Parallel()
+
 	cleanEnvVars()
 
 	data := []EnvTestData{
@@ -315,15 +330,12 @@ func TestEnvUint64(t *testing.T) {
 		if err != nil && !v.IsError {
 			t.Error("expected no error, found one, error:", err)
 		}
-
 	}
-
 }
 
-// BenchmarkUint64 benchmarks a Uint64(1)
+// BenchmarkUint64 benchmarks a Uint64(1).
 func BenchmarkUint64(b *testing.B) {
 	for c := 0; c < b.N; c++ {
 		_ = Uint64(1, 0, &DefaultUint64Config)
 	}
 }
-
