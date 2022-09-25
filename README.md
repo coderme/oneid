@@ -1,4 +1,4 @@
-# ONEID - Distributable Unique numeric IDS
+# ONEID - Distributable Unique numeric IDs
 
 
 ## Features Summary
@@ -17,7 +17,7 @@
 
 ## Installation
 * The usal way, get it:
-```go get github.com/coderme/oneid/v2```
+```go get github.com/coderme/oneid/v3```
 
 
 ## Usage
