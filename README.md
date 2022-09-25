@@ -52,5 +52,5 @@ PASS
 ok      github.com/coderme/oneid/v2     79.977s
 ```
 
-## Note: running test require at least `8__GB__` and much cpu. be preapred with at least `16__GB__` of free memory just in case :) 
+## Note: running test require at least `8GB` and much cpu. be preapred with at least `16GB` of free memory just in case :) 
 
