@@ -76,9 +76,8 @@ func NewUint64Config(serverBits, processBits, sequenceBits uint64) Uint64Config 
 	)
 
 	return Uint64Config{
-		Epoch:        epoch,
 		CustomEpoch:  customEpoch,
-		LastTime:     0,
+		LastTime:     epoch,
 		Sequence:     0,
 		ProcessBits:  processBits,
 		ServerBits:   serverBits,
@@ -91,7 +90,7 @@ func NewUint64Config(serverBits, processBits, sequenceBits uint64) Uint64Config 
 // processBits to 5, which supports upto 32 processes per server
 // serverBits: 10,  which supports upto 1024 servers
 // sequenceBits: 24, which supports upto 16,777,216 ids per time instance.
-var DefaultUint64Config = NewUint64Config(defaultUint64ProcessBits, defaultUint64ServerBits, defaultUint64SequenceBits)
+var DefaultUint64Config = NewUint64Config(minUint64ServerBits, minUint64ProcessBits, defaultUint64SequenceBits)
 
 // Uint64 generates uint64 id using  using serverID, processID and config
 // if processID is zero, then the system pid will be used.

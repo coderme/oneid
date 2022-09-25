@@ -42,4 +42,15 @@ if err != nil {
 
 ````
 
+## Benchmarks
+```go test -bench=. -benchmem```
+
+```
+BenchmarkUint32-8        9375111               127.2 ns/op             0 B/op          0 allocs/op
+BenchmarkUint64-8        9512419               128.2 ns/op             0 B/op          0 allocs/op
+PASS
+ok      github.com/coderme/oneid/v2     79.977s
+```
+
+## Note: running test require at least `8__GB__` and much cpu. be preapred with at least `16__GB__` of free memory just in case :) 
 

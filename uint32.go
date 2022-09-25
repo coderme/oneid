@@ -79,9 +79,8 @@ func NewUint32Config(serverBits, processBits, sequenceBits uint32) Uint32Config 
 	)
 
 	return Uint32Config{
-		Epoch:        epoch,
 		CustomEpoch:  customEpoch,
-		LastTime:     0,
+		LastTime:     epoch,
 		Sequence:     0,
 		ProcessBits:  processBits,
 		ServerBits:   serverBits,
@@ -94,7 +93,7 @@ func NewUint32Config(serverBits, processBits, sequenceBits uint32) Uint32Config 
 // processBits to 5, which supports upto 32 processes per server
 // serverBits: 10,  which supports upto 1024 servers
 // sequenceBits: 12, which supports upto 4096 ids per time instance.
-var DefaultUint32Config = NewUint32Config(defaultUint32ProcessBits, defaultUint32ServerBits, defaultUint32SequenceBits)
+var DefaultUint32Config = NewUint32Config(minUint32ServerBits, minUint32ServerBits, defaultUint32SequenceBits)
 
 // Uint32 generates an uint32 id using serverID, processID and config
 // if processID is zero, then the system pid will be used.

@@ -112,19 +112,16 @@ func TestNewCustomUint64DuplicateId(t *testing.T) {
 func TestNewCustomUint64NonDuplicateIdMultipleThreads(t *testing.T) {
 	t.Parallel()
 
-	ids := make(chan uint64, 100_000)
+	ids := make(chan uint64, 100_000_000)
 	wg := &sync.WaitGroup{}
-	wg.Add(10)
+	wg.Add(10_000)
 
-	// create config with default values
-	c := NewUint64Config(defaultUint64ProcessBits, defaultUint64ServerBits, defaultUint64SequenceBits)
-
-	for t := 0; t < 10; t++ {
+	for t := 0; t < 10_000; t++ {
 		go func() {
 			defer wg.Done()
 
 			for i := uint64(0); i < 10_000; i++ {
-				id := Uint64(i, 0, &c)
+				id := Uint64(i, 0, &DefaultUint64Config)
 
 				ids <- id
 			}
@@ -179,11 +176,11 @@ func TestUint64ForNonUniqueIdsOnSameProcessAndServer(t *testing.T) {
 func TestUint64ForDuplicateIdOnSameProcessAndServerAcrossMultipleThreads(t *testing.T) {
 	t.Parallel()
 
-	ids := make(chan uint64, 100_000)
+	ids := make(chan uint64, 100_000_000)
 	wg := &sync.WaitGroup{}
 
-	wg.Add(10)
-	for p := 0; p < 10; p++ {
+	wg.Add(10_000)
+	for p := 0; p < 10_000; p++ {
 		go func() {
 			defer wg.Done()
 
@@ -234,12 +231,12 @@ func TestUint64ForNonUniqueIdOnDifferentServerIDs(t *testing.T) {
 func TestUint64ForNonUniqueIdOnDifferentServerIDsAcrossMultipleThreads(t *testing.T) {
 	t.Parallel()
 
-	ids := make(chan uint64, 10_240)
+	ids := make(chan uint64, 10_240_000)
 	wg := &sync.WaitGroup{}
 
-	wg.Add(10)
+	wg.Add(10_000)
 
-	for p := 0; p < 10; p++ {
+	for p := 0; p < 10_000; p++ {
 		go func() {
 			defer wg.Done()
 
