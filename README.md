@@ -17,7 +17,7 @@
 
 ## Installation
 * The usal way, get it:
-```go get github.com/coderme/oneid/v2.1.0```
+```go get github.com/coderme/oneid/v2```
 
 
 ## Usage
